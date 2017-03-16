@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    tools:context=".activity.WelcomeActivity">
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/app_tag"
+        app:layout_heightPercent="30%w"
+        app:layout_marginTopPercent="15%"
+        app:layout_widthPercent="60%w" />
+
+    <ImageView
+        android:id="@+id/app_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/app_name"
+        app:layout_heightPercent="20%w"
+        app:layout_marginBottomPercent="15%"
+        app:layout_widthPercent="60%w" />
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_above="@+id/app_name"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/app_icon" />
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

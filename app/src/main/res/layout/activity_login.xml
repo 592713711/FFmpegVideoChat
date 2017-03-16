@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/appbg"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logintext"
+        app:layout_marginTopPercent="4%" />
+
+    <com.nercms.view.CircleImageView
+        android:id="@+id/headicon_btn"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="doSetHead"
+        android:src="@drawable/h1"
+        app:civ_border_color="@android:color/white"
+        app:civ_border_width="3dp"
+        app:layout_heightPercent="35%w"
+        app:layout_marginTopPercent="18%"
+        app:layout_widthPercent="35%w" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/headicon_btn"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/login_edit_bg"
+        app:layout_heightPercent="13%w"
+        app:layout_marginTopPercent="10%"
+        app:layout_widthPercent="80%w" />
+
+    <EditText
+        android:id="@+id/user_text"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/headicon_btn"
+        android:background="@null"
+        android:hint="Username"
+        android:singleLine="true"
+        android:textColor="#f0f0f0"
+        android:textColorHint="#f0f0f0"
+        android:textSize="18sp"
+        app:layout_heightPercent="13%w"
+        app:layout_marginLeftPercent="25%"
+        app:layout_marginTopPercent="10%"
+        app:layout_widthPercent="65%w" />
+
+    <com.nercms.view.morphingbutton.impl.IndeterminateProgressButton
+        android:id="@+id/btnMorph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/user_text"
+        android:layout_centerHorizontal="true"
+        android:text="登陆"
+        android:textColor="@android:color/white"
+        app:layout_marginTopPercent="8%" />
+
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

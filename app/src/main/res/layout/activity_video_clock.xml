@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:voiceView="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    tools:context="com.nercms.activity.VideoClockActivity">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        app:layout_heightPercent="50%h">
+
+        <com.nercms.view.CircleImageView
+            android:id="@+id/user_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/h9"
+            app:layout_heightPercent="50%h"
+            app:layout_marginTopPercent="10%h"
+            app:layout_widthPercent="50%h" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="无情"
+            android:textColor="#505050"
+            android:textSize="30sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/user_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="视频电话"
+            android:textColor="#a0a0a0"
+            android:textSize="18sp" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.carlos.voiceline.mylibrary.VoiceLineView
+        android:id="@+id/voicLine"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@+id/head_layout"
+        app:layout_heightPercent="25%h"
+        voiceView:fineness="three"
+        voiceView:maxVolume="100"
+        voiceView:middleLine="#a1e7f7"
+        voiceView:middleLineHeight="1dp"
+        voiceView:rectSpace="4dp"
+        voiceView:rectWidth="4dp"
+        voiceView:sensibility="four"
+        voiceView:viewMode="line"
+        voiceView:voiceLine="#a1e7f7" />
+
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:layout_heightPercent="25%h">
+
+        <ImageButton
+            android:id="@+id/refuse_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#00000000"
+            android:onClick="doCancle"
+            android:scaleType="fitXY"
+            android:src="@drawable/refuse_icon"
+            app:layout_heightPercent="45%h"
+            app:layout_marginLeftPercent="17%"
+            app:layout_marginTopPercent="15%"
+            app:layout_widthPercent="45%h" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/refuse_btn"
+            android:layout_below="@+id/refuse_btn"
+            android:text="拒绝"
+            android:textSize="16sp"
+            app:layout_marginLeftPercent="12%h"
+            app:layout_marginTopPercent="8%h" />
+
+
+        <ImageButton
+            android:id="@+id/receive_btn"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:background="#00000000"
+            android:onClick="doSure"
+            android:scaleType="fitXY"
+            android:src="@drawable/receive_icon"
+            app:layout_heightPercent="45%h"
+            app:layout_marginRightPercent="17%"
+            app:layout_marginTopPercent="15%"
+            app:layout_widthPercent="45%h" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/receive_btn"
+            android:layout_below="@+id/receive_btn"
+            android:text="接听"
+            android:textSize="16sp"
+            app:layout_marginLeftPercent="12%h"
+            app:layout_marginTopPercent="8%h" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/bottom_layout2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        app:layout_heightPercent="25%h">
+
+        <ImageButton
+            android:id="@+id/refuse_btn2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:background="#00000000"
+            android:onClick="doCancle"
+            android:scaleType="fitXY"
+            android:src="@drawable/refuse_icon"
+            app:layout_heightPercent="45%h"
+            app:layout_marginTopPercent="15%"
+            app:layout_widthPercent="45%h" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/refuse_btn2"
+            android:layout_below="@+id/refuse_btn2"
+            android:text="挂断"
+            android:textSize="16sp"
+            app:layout_marginLeftPercent="12%h"
+            app:layout_marginTopPercent="8%h" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+</com.zhy.android.percent.support.PercentRelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <com.nercms.receive.Videoplay
+        android:id="@+id/video_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.nercms.receive.Videoplay>
+
+    <SurfaceView
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="30dp"
+        android:layout_marginBottom="30dp"
+        android:id="@+id/surface_view"
+        android:background="@drawable/surface_bg"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

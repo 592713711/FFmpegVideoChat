@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.VideoChatActivity">
+
+    <com.nercms.receive.Videoplay
+        android:id="@+id/video_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.nercms.receive.Videoplay>
+
+    <com.nercms.receive.SelfVideoplay
+        android:id="@+id/surface_view"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/surface_bg" />
+
+    <com.nercms.receive.Videoplay
+        android:id="@+id/video_play2"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/surface_bg"
+        android:visibility="invisible"></com.nercms.receive.Videoplay>
+
+    <View
+        android:id="@+id/click_view"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:alpha="0"
+        android:background="@android:color/white"></View>
+
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:background="#33000000"
+        app:layout_heightPercent="16%h">
+
+        <ImageButton
+            android:id="@+id/refuse_btn2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:background="#00000000"
+            android:onClick="doCancle"
+            android:scaleType="fitXY"
+            android:src="@drawable/refuse_icon"
+            app:layout_heightPercent="60%h"
+            app:layout_widthPercent="60%h" />
+
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:onClick="doCamera"
+            android:scaleType="fitXY"
+            android:src="@drawable/camera"
+            app:layout_heightPercent="46%h"
+            app:layout_marginLeftPercent="12%"
+            app:layout_widthPercent="46%h" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:onClick="doChange"
+            android:scaleType="fitXY"
+            android:src="@drawable/change"
+            app:layout_heightPercent="40%h"
+            app:layout_marginRightPercent="5%"
+            app:layout_widthPercent="40%h" />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="#00000000"
+            android:onClick="doFilter"
+            android:scaleType="fitXY"
+            android:src="@drawable/filter"
+            app:layout_heightPercent="40%h"
+            app:layout_marginRightPercent="22%"
+            app:layout_widthPercent="40%h" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:id="@+id/head_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#22000000"
+        app:layout_heightPercent="10%h">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="无敌是多么寂寞"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            app:layout_marginLeftPercent="5%"
+            app:layout_marginTopPercent="10%" />
+
+
+        <ImageView
+            android:id="@+id/phone_icon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignLeft="@+id/user_name"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="4dp"
+            android:src="@drawable/phone_icon" />
+
+        <TextView
+            android:id="@+id/chat_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/phone_icon"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/phone_icon"
+            android:text="00:38"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/layout_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/filter_listView"
+            android:layout_width="match_parent"
+            android:layout_height="94.0dip"
+            android:background="@android:color/white"
+            android:padding="5.0dip"
+            android:scrollbars="none" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/btn_camera_closefilter"
+            android:layout_width="match_parent"
+            android:layout_height="26dip"
+            android:layout_gravity="center_horizontal"
+            android:background="@android:color/white"
+            android:scaleType="center"
+            android:src="@drawable/btn_layout_filters_bar_close" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@android:color/white" />
+    </LinearLayout>
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
+

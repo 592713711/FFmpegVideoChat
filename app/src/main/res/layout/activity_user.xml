@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.nercms.view.DragLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/water_scene_background">
+
+    <com.zhy.android.percent.support.PercentRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp"
+        android:paddingTop="50dp">
+
+        <com.zhy.android.percent.support.PercentRelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            app:layout_marginLeftPercent="10%"
+            app:layout_marginTopPercent="8%">
+
+            <com.nercms.view.CircleImageView
+                android:id="@+id/user_icon"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/h1"
+                />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@+id/user_icon"
+                android:text="Time_Coder"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="15dp"
+                android:textSize="23sp" />
+
+
+        </com.zhy.android.percent.support.PercentRelativeLayout>
+
+
+    </com.zhy.android.percent.support.PercentRelativeLayout>
+
+    <com.nercms.view.MyRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#eeeeee">
+
+        <no.agens.depth.lib.DepthLayout
+            android:id="@+id/root_dl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layerType="hardware">
+
+
+            <com.nercms.view.wave.WaterSceneView
+                android:id="@+id/water_scene"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:background="@drawable/water_scene_background" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="145dp"
+                android:text="在 线 列 表"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+        </no.agens.depth.lib.DepthLayout>
+
+
+
+
+        <android.support.design.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/root_dl"
+            android:background="#00000000">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycle_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#00000000"
+
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.design.widget.CoordinatorLayout>
+
+        <ImageView
+            android:id="@+id/hint"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/hint_icon" />
+
+        <TextView
+            android:id="@+id/hint_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hint"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="还没有用户加入"
+            android:textColor="#000000"
+            android:textSize="18sp" />
+
+
+        <no.agens.depth.lib.DepthLayout
+            android:id="@+id/fab_container"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="152dp"
+            android:background="@drawable/circle"
+            android:layerType="hardware"
+            app:custom_elevation="6dp"
+            app:edge_color="@color/fab"
+            app:is_circle="true">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:layerType="hardware"
+                android:onClick="doQuit"
+                android:src="@drawable/ic_forward"
+                app:backgroundTint="@color/fab"
+                app:rippleColor="@color/fab_highlight" />
+        </no.agens.depth.lib.DepthLayout>
+
+    </com.nercms.view.MyRelativeLayout>
+
+</com.nercms.view.DragLayout>
+

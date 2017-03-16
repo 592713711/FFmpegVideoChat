@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.android.percent.support.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/logintext"
+        app:layout_marginTopPercent="4%" />
+
+    <com.nercms.view.CircleImageView
+        android:id="@+id/headicon_btn"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:contentDescription="@string/app_name"
+        android:onClick="doSetHead"
+        android:src="@drawable/h1"
+
+        />
+
+    <RelativeLayout
+        android:id="@+id/rl_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headicon_btn"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:id="@+id/ll_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/lbs_popup_bg"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/user_text"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="2dp"
+                android:background="@drawable/login_et_bg"
+                android:hint="输入昵称"
+                android:inputType="text"
+                android:padding="10dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="#CBCED2" />
+
+
+        </LinearLayout>
+
+        <com.nercms.view.morphingbutton.impl.IndeterminateProgressButton
+            android:id="@+id/btnMorph"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@id/ll_user_info"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:text="登陆"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="80dp"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/register_user_btn"
+        android:text="注册"
+        android:textColor="#38adff"
+        android:textSize="16sp" />
+
+</com.zhy.android.percent.support.PercentRelativeLayout>
+
+

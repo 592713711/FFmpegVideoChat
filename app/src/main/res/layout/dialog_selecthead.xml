@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:gravity="center"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_loading_bg">
+
+
+
+    <GridView
+        android:layout_width="260dp"
+        android:layout_height="250dp"
+        android:id="@+id/gridView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:numColumns="auto_fit"
+        android:columnWidth="80dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:choiceMode ="singleChoice"/>
+
+    <info.hoang8f.widget.FButton
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="确定"
+        android:id="@+id/sure_btn"
+        android:layout_below="@+id/gridView"
+        android:layout_alignLeft="@+id/gridView"
+        android:layout_alignStart="@+id/gridView"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        fbutton:buttonColor="@color/fbutton_color_emerald"
+        fbutton:shadowColor="@color/fbutton_color_nephritis"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp"
+        fbutton:cornerRadius="5dp"/>
+
+
+
+</RelativeLayout>
