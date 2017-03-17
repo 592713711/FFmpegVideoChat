@@ -51,6 +51,7 @@ import com.nercms.model.VideoData;
 import com.nercms.receive.SelfVideoplay;
 import com.nercms.receive.Videoplay;
 import com.nercms.receive.WrapperLayout;
+import com.nercms.send.FfmpegServer;
 import com.nercms.util.MediaScanner;
 import com.nercms.util.SystemBarTintManager;
 import com.nercms.util.TimeUtil;
@@ -126,7 +127,8 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
     //语音通话
     private AudioServer audioServer;
 
-    private VideoServer videoServer;
+    //private VideoServer videoServer;
+    private FfmpegServer ffmpegServer;
 
     public LinkedList<VideoData> dataLinkedList;
 
@@ -152,8 +154,8 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
         remote_user = (User) getIntent().getSerializableExtra("remote_user");
         chat_start_time = System.currentTimeMillis();
         audioServer = new AudioServer(getIntent().getIntExtra("remote_audio_port", 0));
-        videoServer = new VideoServer(this, getIntent().getIntExtra("remote_video_port", 0));
-
+        //videoServer = new VideoServer(this, getIntent().getIntExtra("remote_video_port", 0));
+        ffmpegServer=new FfmpegServer(this, getIntent().getIntExtra("remote_video_port", 0));
         dataLinkedList = new LinkedList<>();
 
         soundPool = new SoundPool(12, 0, 5);
@@ -201,7 +203,9 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
         handler.sendEmptyMessage(SHOW_TIME);
 
         audioServer.startRecording();
-        videoServer.doStart();
+
+        //videoServer.doStart();
+        ffmpegServer.doStart();
     }
 
     @Override
@@ -259,8 +263,13 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
             p.setWhiteBalance(Camera.Parameters.WHITE_BALANCE_AUTO);
             p.setSceneMode(Camera.Parameters.SCENE_MODE_AUTO);
             p.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
+
+            p.setPictureFormat(PixelFormat.JPEG); // Sets the image format for
+            // picture 设定相片格式为JPEG，默认为NV21
+            p.setPreviewFormat(PixelFormat.YCbCr_420_SP); // Sets the image format
+            //p.setPreviewFormat(ImageFormat.NV21);
             //p.setPreviewFormat(PixelFormat.YCbCr_420_SP); //设置预览视频的格式
-            p.setPreviewFormat(ImageFormat.NV21);
+
 
             p.setPreviewSize(352, 288); //设置预览视频的尺寸，CIF格式352×288
             //p.setPreviewSize(800, 600);
@@ -369,13 +378,12 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
             // Log.d("xxxxx","size1:"+Arrays.toString(frame));
             //YUVtoRGBUtil.decodeYUV420SP(selfVideo.mPixel,frame,352,288);
 
-
-            YuvImage image = new YuvImage(frame, ImageFormat.NV21, 352, 288, null);            //ImageFormat.NV21  640 480
+            YuvImage image = new YuvImage(ffmpegServer.sendData(frame), ImageFormat.NV21, 352, 288, null);            //ImageFormat.NV21  640 480
             ByteArrayOutputStream outputSteam = new ByteArrayOutputStream();
             image.compressToJpeg(new Rect(0, 0, image.getWidth(), image.getHeight()), 70, outputSteam); // 将NV21格式图片，以质量70压缩成Jpeg，并得到JPEG数据流
             selfVideo.jpegData = outputSteam.toByteArray();
             selfVideo.postInvalidate();
-            videoServer.sendData(frame);
+
         }
     }
 
@@ -387,10 +395,27 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
     //    wrapper_view.postInvalidate();
         //Log.e(Config.TAG, "接受视频数据间隔x：" + (audioServer.lastTime - timestamp));
 
+        byte decode[]=ffmpegServer.ffmpeg.videodecode(frmbuf);
+        YuvImage image = new YuvImage(decode, ImageFormat.NV21, 352, 288, null);            //ImageFormat.NV21  640 480
+        ByteArrayOutputStream outputSteam = new ByteArrayOutputStream();
+        image.compressToJpeg(new Rect(0, 0, image.getWidth(), image.getHeight()), 70, outputSteam); // 将NV21格式图片，以质量70压缩成Jpeg，并得到JPEG数据流
+
+
+        if (isStop && wrapper_view != null) {
+            wrapper_view.jpegData = outputSteam.toByteArray();
+            wrapper_view.postInvalidate();
+
+        } else if (isSmallView) {
+            view2.jpegData = outputSteam.toByteArray();
+            view2.postInvalidate();
+        } else {
+            view.jpegData = outputSteam.toByteArray();
+            view.postInvalidate();
+        }
 
         //播方视频
         //Log.e(Config.TAG,"播放视频");
-        if (isStop && wrapper_view != null) {
+       /* if (isStop && wrapper_view != null) {
             videoServer.decode.DecoderNal(frmbuf, frmSize, wrapper_view.mPixel);
             wrapper_view.postInvalidate();
 
@@ -401,6 +426,8 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
             videoServer.decode.DecoderNal(frmbuf, frmSize, view.mPixel);//解码后的图像存在mPixel中
             view.postInvalidate();
         }
+
+        */
 
       /*
         VideoData videoData = new VideoData(frmbuf, frmSize, timestamp);
@@ -454,7 +481,8 @@ public class VideoChatActivity extends AppCompatActivity implements VideoServer.
             mCamera = null; //重新初始化
         }
 
-        videoServer.stopServer();
+        //videoServer.stopServer();
+        ffmpegServer.stopServer();
         audioServer.stopRecording();
 
         //通知对方关闭

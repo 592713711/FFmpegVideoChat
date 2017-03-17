@@ -230,7 +230,7 @@ public class AudioServer {
 
                         try {
                             if (rtp_socket != null) {
-                                 Log.d(Config.TAG, "发送音频数据 :" + (count++) + " 间隔：" + (System.currentTimeMillis() - time1));
+                                 Log.e(Config.TAG, "发送音频数据 :"+timestamp);
                                 // time1 = System.currentTimeMillis();
                                 rtp_socket.send(rtp_send_packet);
                             } else {
@@ -273,7 +273,7 @@ public class AudioServer {
                     e.printStackTrace();
                 }
                 int packetSize = rtp_receive_packet.getPayloadLength(); //获取包的大小
-
+                //Log.e(Config.TAG, "接受音频数据:"+packetSize);
                 if (packetSize <= 0||packetSize>2048)
                     continue;
                 if (rtp_receive_packet.getPayloadType() != 1) //确认负载类型为1
@@ -283,6 +283,8 @@ public class AudioServer {
                 long timestamp = rtp_receive_packet.getTimestamp(); //获取时间戳
                 int bMark = rtp_receive_packet.hasMarker() == true ? 1 : 0; //是否是最后一个包
                 byte[] encoded = rtp_receive_packet.getPayload();
+
+                Log.e(Config.TAG, "接受音频数据:"+timestamp);
                // Log.d("log", "Type:" + rtp_receive_packet.getPayloadType() + " bMark:" + bMark + " packetSize:" + packetSize + " PayloadType:" + rtp_receive_packet.getPayloadType() + " timestamp:" + timestamp);
                 if (encoded.length >= 0) {
                     //解码
@@ -292,7 +294,7 @@ public class AudioServer {
                         // 放入缓存数组中
                         synchronized (dataLinkedList) {
                             dataLinkedList.addLast(new AudioData(decodedData, decodeSize, timestamp));
-                            Log.d(Config.TAG, "接受音频数据");
+
                             //lastTime = timestamp;
                             //int audiosize = audioTrack.write(decodedData, 0, decodeSize);
                             // clear data
@@ -314,13 +316,13 @@ public class AudioServer {
             while (isRecording){
                 if(dataLinkedList.size()>0){
                     AudioData audioData=null;
-                    Log.d(Config.TAG, "播放音频数据1");
+                    //Log.d(Config.TAG, "播放音频数据1");
                     synchronized (dataLinkedList) {
                          audioData = dataLinkedList.removeFirst();
                     }
                     if(audioData!=null) {
                         lastTime = audioData.time;
-                        Log.d(Config.TAG, "播放音频数据2");
+                       // Log.d(Config.TAG, "播放音频数据2");
                         int audiosize = audioTrack.write(audioData.data, 0, audioData.size);
                     }
                 }

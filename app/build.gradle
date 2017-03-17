@@ -36,4 +36,5 @@ dependencies {
     compile files('libs/nineoldandroids-2.4.0.jar')
     compile project(':ilbclibrary')
     compile project(':lib')
+    compile project(':ffmpeg')
 }

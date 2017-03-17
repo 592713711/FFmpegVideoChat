@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
@@ -44,14 +45,14 @@ public class Videoplay extends View {
     private int view_height;
 
     private GPUImage gpuImage;
-    private static MagicFilterType filterType=MagicFilterType.NONE;
+    private static MagicFilterType filterType = MagicFilterType.NONE;
 
     public Videoplay(Context context, AttributeSet attrs) {
         super(context, attrs);
         matrix = new Matrix();
-     //   DisplayMetrics dm = getResources().getDisplayMetrics();
-     //   int W = dm.widthPixels;
-      //  int H = dm.heightPixels;
+        //   DisplayMetrics dm = getResources().getDisplayMetrics();
+        //   int W = dm.widthPixels;
+        //  int H = dm.heightPixels;
 
 
         photoPaint = new Paint();
@@ -59,27 +60,27 @@ public class Videoplay extends View {
         photoPaint.setStyle(Paint.Style.STROKE);   //空心
         photoPaint.setStrokeWidth(35);
 
-        gpuImage=new GPUImage(MyApplication.getInstance());
+        gpuImage = new GPUImage(MyApplication.getInstance());
     }
 
-    @Override
+   /* @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //绘制截图白色边框
         if (isPhotoing) {
-            Log.d("xxxxx",view_width+" "+view_height+" "+photoPaint.getStrokeWidth());
+            Log.d("xxxxx", view_width + " " + view_height + " " + photoPaint.getStrokeWidth());
 
             if (VideoBit2 != null)
                 canvas.drawBitmap(VideoBit2, null, rectF, null);
 
-            canvas.drawRect(0, 0, view_width,view_height, photoPaint);
+            canvas.drawRect(0, 0, view_width, view_height, photoPaint);
             return;
         }
 
         buffer.rewind();
 
         VideoBit.copyPixelsFromBuffer(buffer);
-        gpuImage=new GPUImage(MyApplication.getInstance());
+        gpuImage = new GPUImage(MyApplication.getInstance());
         gpuImage.setImage(VideoBit);
         gpuImage.setFilter(ImageFilterFactory.getInstance().getFilter(filterType));
         VideoBit = gpuImage.getBitmapWithFilterApplied();
@@ -92,7 +93,51 @@ public class Videoplay extends View {
         }
 
 
+    }*/
+
+
+    public byte[] jpegData;
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+
+        //绘制截图白色边框
+        if (isPhotoing) {
+            Log.d("xxxxx", view_width + " " + view_height + " " + photoPaint.getStrokeWidth());
+
+            if (VideoBit2 != null)
+                canvas.drawBitmap(VideoBit2, null, rectF, null);
+
+            canvas.drawRect(0, 0, view_width, view_height, photoPaint);
+            return;
+        }
+        buffer.rewind();
+
+        if (jpegData != null) {
+
+            VideoBit = BitmapFactory.decodeByteArray(jpegData, 0, jpegData.length);
+            //Log.e("yyyy","count:"+VideoBit.getByteCount());
+            setAngle();
+            canvas.drawBitmap(VideoBit2, null, rectF, null);
+
+
+        }
+
+/*       VideoBit.copyPixelsFromBuffer(buffer);
+
+
+        //canvas.drawBitmap(adjustPhotoRotation(VideoBit,90), 0, 0, null);
+        //
+        //Bitmap b = BitmapFactory.decodeByteArray(mPixel, 0, mPixel.length);
+        synchronized (VideoBit2) {
+            canvas.drawBitmap(VideoBit2, null, rectF, null);
+            //canvas.drawText("sdfasfasdfaasdf",0,0,photoPaint);
+        }*/
+
+
     }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -103,10 +148,10 @@ public class Videoplay extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.d("VideoChatActivity",w+"  "+h);
+        Log.d("VideoChatActivity", w + "  " + h);
         rectF = new RectF(0, 0, w, h);
-        view_width=w;
-        view_height=h;
+        view_width = w;
+        view_height = h;
     }
 
     //  设置旋转比例
@@ -163,12 +208,12 @@ public class Videoplay extends View {
         isPhotoing = false;
     }
 
-    public static void setFilterType(MagicFilterType type){
-        filterType=type;
+    public static void setFilterType(MagicFilterType type) {
+        filterType = type;
     }
 
-    public static void close(){
-        filterType=MagicFilterType.NONE;
+    public static void close() {
+        filterType = MagicFilterType.NONE;
         mPixel = new byte[width * height * 2];
     }
 }
